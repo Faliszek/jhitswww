@@ -1,14 +1,12 @@
 <?php
 
-// include database and object files
 include_once '../inf/image.php';
 
 class Image
 {
 
-    // database connection and table name
     //img instance
-    private $i;
+    private $imageReadModel;
 
     // object properties
     public $id;
@@ -17,10 +15,14 @@ class Image
     public $url;
     public $created;
 
+    public function __construct()
+    {
+        $this->imageReadModel = new ImageReadModel();
+    }
+
     public function getAll()
     {
-        $this->i = new ImageReadModel();
-        return $this->i->getAll();
+        return $this->imageReadModel->getAll();
     }
 
 }

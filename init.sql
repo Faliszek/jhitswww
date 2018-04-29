@@ -1,3 +1,15 @@
+DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS images;
+
+CREATE TABLE
+IF NOT EXISTS `users` (
+  `id` INT (6) AUTO_INCREMENT PRIMARY KEY,
+  `email` TEXT,
+  `password` TEXT
+);
+
+
+
 CREATE TABLE
 IF NOT EXISTS `images`
 (
@@ -9,6 +21,16 @@ IF NOT EXISTS `images`
 `url` TEXT,
 `created` TIMESTAMP
 );
+
+
+
+INSERT INTO users
+  (email, password)
+  VALUES (
+    "admin@up.krakow.pl",
+    MD5("admin")
+  );
+
 INSERT INTO images
   (title, description, url, created)
 VALUES
@@ -25,4 +47,5 @@ VALUES
   ("Sierra", "Lorem ipsum", "/img/sierra-min.jpg", NOW()),
   ("Sierra", "Lorem ipsum", "/img/sierra2-min.jpg", NOW()),
   ("Yosemite", "Lorem ipsum", "/img/yosemite-min.jpg", NOW());
+
 
