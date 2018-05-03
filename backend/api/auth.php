@@ -15,13 +15,11 @@ class AuthApi extends Api
     public function __construct()
     {
         $this->auth = new Auth();
-
     }
 
     public function handleRequest()
     {
         $res = '';
-
         $this->r = json_decode(file_get_contents("php://input"), true);
 
         if ($this->auth->validateRequest($this->r['email'], $this->r['password'])) {
@@ -52,6 +50,5 @@ class AuthApi extends Api
 
 }
 
-// $r = json_decode(file_get_contents("php://input"), true);
 $a = new AuthApi();
 $a->handleRequest();

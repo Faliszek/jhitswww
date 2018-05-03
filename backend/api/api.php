@@ -16,7 +16,6 @@ class Api
     public function handleBadRequest($violations = array())
     {
         http_response_code(400);
-
         $err = array(
             'error' => 'Bad request',
             'violations' => $violations,
@@ -28,7 +27,6 @@ class Api
     public function handleMethodNotAllowed()
     {
         http_response_code(405);
-
         $err = array(
             'error' => 'Method not allowed',
         );
@@ -39,7 +37,6 @@ class Api
     public function handleUnauthorized()
     {
         http_response_code(401);
-
         $err = array(
             'error' => 'You dont have permissions',
         );
@@ -50,7 +47,6 @@ class Api
     public function handleSuccess()
     {
         http_response_code(200);
-
         $err = array(
             'message' => 'OK',
         );

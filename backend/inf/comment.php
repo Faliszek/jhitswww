@@ -18,7 +18,6 @@ class CommentReadModel
         $query = sprintf("SELECT * FROM comments WHERE %s='%s'",
             'image_id',
             $id);
-
         $cQuery = $this->conn->prepare($query);
         $cQuery->execute();
 
@@ -28,11 +27,8 @@ class CommentReadModel
     public function newComment($imageId, $author, $text)
     {
 
-        // $query =
-        $now = Time::now();
-
+        $now = time();
         $query = sprintf("INSERT INTO  comments (image_id, author, text, created) VALUES (%d, '%s', '%s', %d);", $imageId, $author, $text, $now);
-
         $cQuery = $this->conn->prepare($query);
 
         if ($cQuery->execute()) {

@@ -5,14 +5,7 @@ include_once '../inf/comment.php';
 class Comment
 {
 
-    //img instance
     private $commentReadModel;
-
-    // object properties
-    public $id;
-    public $author;
-    public $text;
-    public $created;
 
     public function __construct()
     {

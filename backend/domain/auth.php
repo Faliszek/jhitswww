@@ -60,8 +60,8 @@ class Auth
     {
         $token = array(
             "email" => $email,
-            "expire" => Time::now(),
-            "iat" => 1356999524,
+            "exp" => time() + time() * 60 * 60 * 24,
+            "iat" => time(),
             "nbf" => 1357000000,
             'hasAccess' => true,
         );

@@ -5,15 +5,7 @@ include_once '../inf/image.php';
 class Image
 {
 
-    //img instance
     private $imageReadModel;
-
-    // object properties
-    public $id;
-    public $name;
-    public $description;
-    public $url;
-    public $created;
 
     public function __construct()
     {

@@ -37,11 +37,4 @@ class AuthReadModel
         return $uQuery;
     }
 
-    public function dateNow()
-    {
-        //This is bullshit, it's recomended way to Unix timestamp from PHP  - pathetic
-        list($usec, $sec) = explode(" ", microtime());
-        return ((int) $usec + (int) $sec);
-    }
-
 }
