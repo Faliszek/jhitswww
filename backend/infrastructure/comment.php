@@ -1,5 +1,4 @@
 <?php
-include_once 'time.php';
 
 class CommentReadModel
 {

@@ -1,6 +1,6 @@
 <?php
 
-include_once '../inf/comment.php';
+include_once '../infrastructure/comment.php';
 
 class Comment
 {

@@ -1,6 +1,6 @@
 <?php
 
-include_once '../inf/image.php';
+include_once '../infrastructure/image.php';
 
 class Image
 {

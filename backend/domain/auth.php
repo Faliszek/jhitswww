@@ -1,8 +1,7 @@
 
 <?php
 
-include_once '../inf/auth.php';
-include_once '../inf/time.php';
+include_once '../infrastructure/auth.php';
 include_once '../vendor/php-jwt/src/JWT.php';
 
 const KEY = "my_secret_key";
