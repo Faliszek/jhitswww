@@ -2,6 +2,7 @@
 <?php
 
 include_once '../inf/auth.php';
+include_once '../inf/time.php';
 include_once '../vendor/php-jwt/src/JWT.php';
 
 const KEY = "my_secret_key";
@@ -59,7 +60,7 @@ class Auth
     {
         $token = array(
             "email" => $email,
-            "expire" => $this->authReadModel->dateNow(),
+            "expire" => Time::now(),
             "iat" => 1356999524,
             "nbf" => 1357000000,
             'hasAccess' => true,
@@ -83,8 +84,6 @@ class Auth
         } catch (\Exception $e) {
             return false;
         }
-
-        // var_dump($decoded);
 
         return true;
     }

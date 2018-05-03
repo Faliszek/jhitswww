@@ -1,12 +1,13 @@
 <?php
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
-
+header("Access-Control-Allow-Methods: GET");
 // include database and object files
 include_once '../domain/image.php';
 include_once '../domain/auth.php';
+include_once './api.php';
 
-class ImageApi
+class ImageApi extends Api
 {
     private $image;
     private $imageQuery;
@@ -15,35 +16,22 @@ class ImageApi
     public function handleRequest()
     {
         $image = new Image();
-        $imageQuery = $image->getAll();
-        $imagesArray['images'] = array();
+        $params = $this->getParams();
 
-        foreach ($imageQuery->fetchAll() as $i) {
-            $image = array(
-                "id" => $i['id'],
-                "title" => $i['title'],
-                "description" => $i['description'],
-                "url" => $i['url'],
-                "created" => $i['created'],
-            );
-
-            array_push($imagesArray['images'], $image);
+        if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
+            $this->handleMethodNotAllowed();
         }
 
-        echo json_encode($imagesArray);
+        if ($params['id']) {
+            $i = $image->getOne($params['id']);
+            $this->encodeJSON($i);
+        } else {
+            $imagesArray = $image->getAll();
+            $this->encodeJSON($imagesArray);
+        }
 
     }
 
-    public function handleError()
-    {
-        http_response_code(422);
-
-        $err = array(
-            'error' => 'You dont have permissions',
-        );
-
-        echo json_encode($err);
-    }
 }
 
 $i = new ImageApi();
@@ -51,5 +39,5 @@ $i = new ImageApi();
 if (Auth::hasAccess()) {
     $i->handleRequest();
 } else {
-    $i->handleError();
+    $i->handleUnauthorized();
 }

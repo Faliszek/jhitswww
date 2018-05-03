@@ -5,8 +5,9 @@ header("Content-Type: application/json; charset=UTF-8");
 
 // include database and object files
 include_once '../domain/auth.php';
+include_once './api.php';
 
-class AuthApi
+class AuthApi extends Api
 {
     private $auth;
     private $r; //request
@@ -27,10 +28,10 @@ class AuthApi
             $res = $this->handleSuccess($res);
 
         } else {
-            $res = $this->handleError($res);
+            $res = $this->handleAuthError($res);
         }
 
-        echo json_encode($res);
+        $this->encodeJSON($res);
     }
 
     public function handleSuccess($res)
@@ -40,7 +41,7 @@ class AuthApi
         );
     }
 
-    public function handleError($res)
+    public function handleAuthError($res)
     {
         http_response_code(422);
 

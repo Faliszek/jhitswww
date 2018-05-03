@@ -24,4 +24,16 @@ class ImageReadModel
 
         return $imageQuery;
     }
+
+    public function getOne($id)
+    {
+        $query = sprintf("SELECT * FROM images WHERE %s='%s'",
+            'id',
+            $id);
+
+        $imageQuery = $this->conn->prepare($query);
+        $imageQuery->execute();
+
+        return $imageQuery;
+    }
 }
