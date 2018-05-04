@@ -74,7 +74,7 @@ const LoginForm = styled.form`
 
   padding: 2rem 2.5rem;
   border-radius: 2rem;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.1);
   i {
     background: ${theme.blue};
     color: #fff;

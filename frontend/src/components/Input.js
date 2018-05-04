@@ -36,7 +36,7 @@ const InputStyled = styled.div`
       border-color: ${theme.gray};
       border-width: 1px;
       font-size: 0.85rem;
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.25);
       color:#fff;
       padding: 0.75rem 0.5rem;
       width: 100%;
@@ -46,7 +46,7 @@ const InputStyled = styled.div`
       border-bottom-right-radius: 0.8rem;
       transition: 0.3s background ease;
       &:focus {
-        background: rgba(255, 255, 255, 0.35);
+        background: rgba(255, 255, 255, 0.45);
 
       }
 
