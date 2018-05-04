@@ -1,0 +1,47 @@
+//@flow
+
+import React from "react";
+import styled from "styled-components";
+import theme from "../theme";
+
+const Button = props => {
+  return (
+    <ButtonStyled
+      maxWidth={props.maxWidth}
+      boxShadow={props.boxShadow}
+      {...props}
+    />
+  );
+};
+
+Button.defaultProps = {
+  boxShadow: theme.shadow.small,
+  maxWidth: "320px",
+  center: true
+};
+
+const ButtonStyled = styled.button`
+  outline: none;
+  font-size: 0.85rem;
+  padding: 0 1rem;
+  border-radius: 4px;
+  background: ${theme.blue};
+  color: #fff;
+  border: none;
+  height: 2.5rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: ${theme.transition};
+  max-width: ${props => props.maxWidth};
+  display: block;
+  margin: ${props => (props.center ? "0 auto" : "initial")};
+
+  &:hover {
+    background: ${theme.darkBlue};
+  }
+  &:active {
+    border: none;
+  }
+`;
+
+export default Button;
