@@ -1,3 +1,3 @@
 <?php
 
-include "frontend/build/index.html";
+// include "frontend/build/index.html";

@@ -5,14 +5,43 @@ import { Grid, Col, Row } from "react-styled-flexboxgrid";
 
 import styled from "styled-components";
 import { Icon, Input, Button } from "../components";
-import loginBackground from "../assets/login-bg.jpg";
 
+import * as Api from "../api";
 import theme from "../theme";
 
-class Login extends Component {
+type Props = {};
+type State = {
+  email: string,
+  password: string,
+  loading: boolean,
+  error: boolean
+};
+
+class Login extends Component<Props, State> {
+  state = {
+    email: "admin@up.krakow.pl",
+    password: "admin",
+    loading: false,
+    error: false
+  };
+
+  componentDidMount() {
+    // Api.getImages();
+  }
   onSubmit = e => {
     e.preventDefault();
+    const { email, password } = this.state;
+    this.setState({ loading: true });
+    Api.logIn(email, password)
+      .then(console.log)
+      .catch(console.log);
   };
+
+  onChange = (e: InputEvent, type: "email" | "password") => {
+    const { value } = e.target;
+    this.setState({ [type]: value });
+  };
+
   render() {
     return (
       <LoginStyled fluid>
@@ -22,10 +51,26 @@ class Login extends Component {
               <LoginForm onSubmit={this.onSubmit}>
                 <Icon shadow={1}>lock</Icon>
                 <FormInputs>
-                  <Input type="email" placeholder="Email" />
-                  <Input type="password" placeholder="Hasło" />
+                  <Input
+                    type="email"
+                    value={this.state.email}
+                    onChange={e => this.onChange(e, "email")}
+                    placeholder="Email"
+                  />
+                  <Input
+                    type="password"
+                    value={this.state.password}
+                    onChange={e => this.onChange(e, "password")}
+                    placeholder="Hasło"
+                  />
                 </FormInputs>
-                <Button>Zaloguj się</Button>
+                <Button
+                  className="shadow-1"
+                  loading={this.state.loading}
+                  onClick={this.onSubmit}
+                >
+                  Zaloguj się
+                </Button>
               </LoginForm>
             </LoginWrap>
           </Col>
@@ -39,14 +84,10 @@ const LoginStyled = styled(Grid)`
   position: relative;
   z-index: 1;
   background: #585858;
-
   &::after {
     content: "";
-    background-image: url(${loginBackground});
-    background-size: cover;
-    background-repeat: no-repeat;
-
-    opacity: 0.8;
+    background-color: ${theme.blue};
+    opacity: 0.9;
     top: 0;
     left: 0;
     bottom: 0;
@@ -83,6 +124,11 @@ const LoginForm = styled.form`
     padding: 1rem;
     margin: 0 auto;
     text-align: center;
+    opacity: 0.85;
+  }
+
+  button {
+    opacity: 0.85;
   }
 `;
 

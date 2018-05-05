@@ -37,7 +37,7 @@ const InputStyled = styled.div`
       border-width: 1px;
       font-size: 0.85rem;
       background: rgba(255, 255, 255, 0.25);
-      color:#fff;
+      color: #fff;
       padding: 0.75rem 0.5rem;
       width: 100%;
       border-top-right-radius: 0.8rem;
@@ -47,23 +47,12 @@ const InputStyled = styled.div`
       transition: 0.3s background ease;
       &:focus {
         background: rgba(255, 255, 255, 0.45);
-
       }
 
-      &::placeholder{
-        color:#eaeaea;
+      &::placeholder {
+        color: #eaeaea;
       }
-
     }
-    /* .bar {
-      display: block;
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 0%;
-      height: 2px;
-      background: ${theme.blue};
-    } */
     &:after {
       content: "";
     }

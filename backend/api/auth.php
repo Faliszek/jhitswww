@@ -1,7 +1,10 @@
 <?php
 
 header("Access-Control-Allow-Origin: *");
-header("Content-Type: application/json; charset=UTF-8");
+header("Content-Type: application/json");
+header("Access-Control-Allow-Methods: POST, OPTIONS");
+header("Access-Control-Max-Age: 3600");
+header("Access-Control-Allow-Headers: Content-Type, Accept, Access-Control-Allow-Headers, Authorization,");
 
 // include database and object files
 include_once '../domain/auth.php';
@@ -23,7 +26,7 @@ class AuthApi extends Api
         $this->r = json_decode(file_get_contents("php://input"), true);
 
         if ($this->auth->validateRequest($this->r['email'], $this->r['password'])) {
-            $res = $this->handleSuccess($res);
+            $res = $this->returnToken($res);
 
         } else {
             $res = $this->handleAuthError($res);
@@ -32,8 +35,9 @@ class AuthApi extends Api
         $this->encodeJSON($res);
     }
 
-    public function handleSuccess($res)
+    public function returnToken($res)
     {
+
         return array(
             'token' => $this->auth->createToken($this->r['email']),
         );

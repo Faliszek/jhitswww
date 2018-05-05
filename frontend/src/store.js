@@ -13,8 +13,4 @@ export const history = createHistory();
 // Build the middleware for intercepting and dispatching navigation actions
 const middleware = routerMiddleware(history);
 
-export const store = createStore(
-  reducers,
-
-  applyMiddleware(middleware)
-);
+export const store = createStore(reducers, applyMiddleware(middleware));

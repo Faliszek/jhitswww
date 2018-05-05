@@ -9,6 +9,7 @@ class Api
 
     public function encodeJSON($json)
     {
+
         echo json_encode($json);
         die();
     }
@@ -51,6 +52,6 @@ class Api
             'message' => 'OK',
         );
 
-        $this->encodeJSON($err);
+        return $this->encodeJSON($err);
     }
 }

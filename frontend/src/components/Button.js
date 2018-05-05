@@ -9,6 +9,8 @@ const Button = props => {
     <ButtonStyled
       maxWidth={props.maxWidth}
       boxShadow={props.boxShadow}
+      loading={props.loading}
+      type={props.htmlType}
       {...props}
     />
   );
@@ -17,7 +19,9 @@ const Button = props => {
 Button.defaultProps = {
   boxShadow: theme.shadow.small,
   maxWidth: "320px",
-  center: true
+  center: true,
+  loading: false,
+  htmlType: "button"
 };
 
 const ButtonStyled = styled.button`
