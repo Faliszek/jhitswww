@@ -1,20 +1,23 @@
 //@flow
 
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { signIn } from "../../core/auth/actions";
 import { Grid, Col, Row } from "react-styled-flexboxgrid";
 
 import styled from "styled-components";
-import { Icon, Input, Button } from "../components";
+import { Icon, Input, Button } from "../../components";
 
-import * as Api from "../api";
-import theme from "../theme";
+import * as Api from "../../api";
+import theme from "../../theme";
 
 type Props = {};
 type State = {
   email: string,
   password: string,
   loading: boolean,
-  error: boolean
+  error: boolean,
+  errorText: ""
 };
 
 class Login extends Component<Props, State> {
@@ -22,7 +25,8 @@ class Login extends Component<Props, State> {
     email: "admin@up.krakow.pl",
     password: "admin",
     loading: false,
-    error: false
+    error: false,
+    errorText: ""
   };
 
   componentDidMount() {
@@ -33,8 +37,20 @@ class Login extends Component<Props, State> {
     const { email, password } = this.state;
     this.setState({ loading: true });
     Api.logIn(email, password)
-      .then(console.log)
-      .catch(console.log);
+      .then(accessData => {
+        this.setState({ loading: false, error: false });
+        console.log(accessData);
+        this.props.signIn();
+      })
+      .catch(err => {
+        this.setState({ loading: false, error: true });
+
+        if (err.status === 422) {
+          this.setState({ errorText: "Niepoprawne dane logowania" });
+        } else {
+          this.setState({ errorText: "Wystąpił nieoczekiwany błąd" });
+        }
+      });
   };
 
   onChange = (e: InputEvent, type: "email" | "password") => {
@@ -136,4 +152,4 @@ const FormInputs = styled.div`
   margin: 2rem 0 1.25rem;
 `;
 
-export default Login;
+export default connect(null, { signIn })(Login);

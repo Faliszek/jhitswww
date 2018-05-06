@@ -1,4 +1,6 @@
 //@flow
+import decodeJwt from "jwt-decode";
+
 // $FlowFixMe
 export const API_URL: string = "http://ux.up.krakow.pl/~pfalisz/backend/api";
 // export const API_URL: string = "http://localhost:8080/jhitswww/backend/api";
@@ -26,5 +28,12 @@ export function post(path: string, data: Object) {
 }
 
 export function logIn(email, password) {
-  return post(`/auth`, { email, password });
+  return post(`/auth`, { email, password }).then(res => {
+    const { accessToken } = res.data;
+    console.log(res);
+    return {
+      ...decodeJwt(accessToken),
+      accessToken
+    };
+  });
 }

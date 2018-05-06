@@ -39,7 +39,7 @@ class AuthApi extends Api
     {
 
         return array(
-            'token' => $this->auth->createToken($this->r['email']),
+            'accessToken' => $this->auth->createToken($this->r['email']),
         );
     }
 

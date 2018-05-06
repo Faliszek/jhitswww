@@ -8,11 +8,11 @@ import { Switch, Route, HashRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "./store";
 
-import HomePage from "./Homepage/index";
-import Login from "./Login/index";
+import HomePage from "./views/Homepage/index";
+import Login from "./views/Login/index";
 
 import theme from "./theme";
-import "antd/dist/antd.css";
+// import "antd/dist/antd.css";
 // Add the reducer to your store on the `router` key
 // Also apply our middleware for navigating
 
