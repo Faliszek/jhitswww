@@ -4,12 +4,13 @@ import React, { Component } from "react";
 import { ThemeProvider } from "styled-components";
 
 import { Switch, Route, HashRouter } from "react-router-dom";
-
+import { Guardian } from "./components";
 import { Provider } from "react-redux";
 import { store } from "./store";
 
-import HomePage from "./views/Homepage/index";
-import Login from "./views/Login/index";
+import HomePage from "./views/Homepage";
+import Pictures from "./views/Pictures";
+import Login from "./views/Login";
 
 import theme from "./theme";
 // import "antd/dist/antd.css";
@@ -23,8 +24,15 @@ class App extends Component {
         <ThemeProvider theme={theme}>
           <HashRouter>
             <Switch>
-              <Route exact path="/" component={HomePage} />
               <Route path="/login" component={Login} />
+              <Guardian
+                render={() => (
+                  <Switch>
+                    <Route exact path="/" component={HomePage} />
+                    <Route exact path="/pictures" component={Pictures} />
+                  </Switch>
+                )}
+              />
             </Switch>
           </HashRouter>
         </ThemeProvider>

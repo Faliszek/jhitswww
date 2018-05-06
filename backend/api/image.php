@@ -1,7 +1,10 @@
 <?php
-header("Access-Control-Allow-Origin: *");
-header("Content-Type: application/json; charset=UTF-8");
-header("Access-Control-Allow-Methods: GET");
+
+header('Access-Control-Allow-Origin: *');
+header("Access-Control-Allow-Credentials: true");
+header('Access-Control-Allow-Methods: GET, OPTIONS');
+header('Access-Control-Max-Age: 1000');
+header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token , Authorization');
 // include database and object files
 include_once '../domain/image.php';
 include_once '../domain/auth.php';
@@ -22,7 +25,7 @@ class ImageApi extends Api
             $this->handleMethodNotAllowed();
         }
 
-        if ($params['id']) {
+        if (isset($params['id'])) {
             $i = $image->getOne($params['id']);
             $this->encodeJSON($i);
         } else {
