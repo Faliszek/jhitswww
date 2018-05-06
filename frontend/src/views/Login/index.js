@@ -3,6 +3,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { signIn } from "../../core/auth/actions";
+import { withRouter } from "react-router-dom";
 import { Grid, Col, Row } from "react-styled-flexboxgrid";
 
 import styled from "styled-components";
@@ -39,8 +40,7 @@ class Login extends Component<Props, State> {
     Api.logIn(email, password)
       .then(accessData => {
         this.setState({ loading: false, error: false });
-        console.log(accessData);
-        this.props.signIn();
+        this.props.signIn(accessData);
       })
       .catch(err => {
         this.setState({ loading: false, error: true });
@@ -152,4 +152,4 @@ const FormInputs = styled.div`
   margin: 2rem 0 1.25rem;
 `;
 
-export default connect(null, { signIn })(Login);
+export default withRouter(connect(null, { signIn })(Login));

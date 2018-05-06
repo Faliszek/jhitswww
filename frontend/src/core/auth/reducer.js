@@ -17,7 +17,6 @@ function auth(state: State = INITIAL_STATE, action: Action): State {
     case "SIGN_OUT":
       return INITIAL_STATE;
     case "SIGN_IN":
-      console.log(action.payload);
       return { ...state, ...action.payload };
 
     default:
