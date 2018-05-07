@@ -8,6 +8,7 @@ import { Grid, Col, Row } from "react-styled-flexboxgrid";
 import { Input, Button } from "../../../components";
 
 import theme from "../../../theme";
+
 class AddComment extends Component {
   state = {
     text: "",
@@ -20,13 +21,14 @@ class AddComment extends Component {
   };
 
   onSubmit = e => {
+    console.log(e);
     e.preventDefault();
-    this.props.onSubmit(this.state.author, this.state.text);
+    this.props.handleSubmit(this.state);
   };
 
   render() {
     return (
-      <AddCommentStyled>
+      <AddCommentStyled onSubmit={this.onSubmit}>
         <FormInputs>
           <Input
             type="text"

@@ -45,7 +45,7 @@ export function get(path: string, params: Object = undefined) {
 
 export function post(path: string, data: Object, params: Object = undefined) {
   const query = params ? `?${qs.stringify(params)}` : "";
-
+  console.log(query);
   return axios.post(`${API_URL}${path}.php${query}`, JSON.stringify(data), {
     headers: {
       "Content-Type": "text/plain;charset=UTF-8"
@@ -86,7 +86,8 @@ export function getComments(id) {
 }
 
 export function addComment(id, author, text) {
-  return post(`/comment`, { author, text }, { id }).then(res =>
+  console.log(author, text);
+  return post(`/comment`, { imageId: id, author, text }, { id }).then(res =>
     console.log(res)
   );
 }

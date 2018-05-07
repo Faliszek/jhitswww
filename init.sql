@@ -59,5 +59,5 @@ VALUES
 
 INSERT INTO comments
   (image_id, author, text, created)
-  VALUES('2', 'Anonim', 'Aliquam efficitur aliquet porttitor. Integer congue ligula elit, ullamcorper luctus lacus dapibus id. Sed vehicula,', 1525725655335);
+  VALUES('1', 'Anonim', 'Aliquam efficitur aliquet porttitor. Integer congue ligula elit, ullamcorper luctus lacus dapibus id. Sed vehicula,', 1525725655335);
 

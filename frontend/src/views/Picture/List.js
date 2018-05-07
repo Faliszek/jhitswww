@@ -24,16 +24,10 @@ class Pictures extends Component<{}, State> {
   componentDidMount() {
     this.setState({ loading: true });
     getImages().then(pictures => {
-      this.setState(
-        {
-          pictures
-        },
-        () => {
-          setTimeout(() => {
-            this.setState({ loading: false });
-          }, 3500);
-        }
-      );
+      this.setState({
+        pictures,
+        loading: false
+      });
     });
   }
 

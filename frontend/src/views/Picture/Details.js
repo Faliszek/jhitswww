@@ -37,20 +37,13 @@ class PictureDetails extends Component<Props, State> {
 
   onSubmit = ({ author, text }) => {
     const { id } = this.props.match.params;
-    this.setState({ loading: true });
     Api.addComment(id, author, text)
       .then(res => {
-        this.setState({ loading: false, error: false });
+        this.setState({ loadingComments: false, error: false });
         this.fetchComments();
       })
       .catch(err => {
-        this.setState({ loading: false, error: true });
-
-        // if (err.status === 422) {
-        // this.setState({ errorText: "Niepoprawne dane logowania" });
-        // } else {
-        // this.setState({ errorText: "Wystąpił nieoczekiwany błąd" });
-        // }
+        this.setState({ loadingComments: false, error: true });
       });
   };
 
@@ -82,7 +75,7 @@ class PictureDetails extends Component<Props, State> {
                     loading={this.state.loadingComments}
                   />
 
-                  <AddComment onSubmit={this.onSubmit} />
+                  <AddComment handleSubmit={this.onSubmit} />
                 </Col>
               </Fragment>
             </Row>
@@ -95,7 +88,7 @@ class PictureDetails extends Component<Props, State> {
 
 const PictureDetailsStyled = styled(Grid)`
   background: ${theme.blue};
-  height: 100vh;
+  min-height: 100vh;
   h1 {
     padding-top: 5rem;
     text-align: left;
