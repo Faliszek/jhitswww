@@ -1,5 +1,6 @@
 //@flow
 import decodeJwt from "jwt-decode";
+import qs from "query-string";
 import { store } from "./store";
 import axios from "axios";
 // $FlowFixMe
@@ -28,14 +29,16 @@ export const API_URL: string = `${ROOT_URL}/backend/api`;
 //   });
 // }
 
-export function get(path: string) {
+export function get(path: string, params: Object = undefined) {
   const { auth } = store.getState();
   if (auth.accessToken) {
     axios.defaults.headers.common["Authorization"] = `Bearer ${
       auth.accessToken
     }`;
   }
-  return axios.get(`${API_URL}${path}.php`);
+  const query = params ? `?${qs.stringify(params)}` : "";
+
+  return axios.get(`${API_URL}${path}.php${query}`);
 }
 
 export function post(path: string, data: Object) {
@@ -60,4 +63,15 @@ export function getImages() {
   return get("/image").then(res =>
     res.data.images.map(i => ({ ...i, url: `${MEDIA_URL}${i.url}` }))
   );
+}
+
+export function getImage(id) {
+  return get(`/image`, { id }).then(img => ({
+    ...img.data,
+    url: `${MEDIA_URL}${img.data.url}`
+  }));
+}
+
+export function getComments(id) {
+  return get(`/comment`, { id }).then(res => res.data);
 }

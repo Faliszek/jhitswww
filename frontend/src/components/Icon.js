@@ -5,7 +5,9 @@ type Props = {};
 
 const Icon = (props: Props) => {
   return (
-    <i className={`material-icons shadow-${props.shadow}`}>{props.children}</i>
+    <i className={`material-icons shadow-${props.shadow} ${props.type}`}>
+      {props.type}
+    </i>
   );
 };
 

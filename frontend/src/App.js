@@ -8,8 +8,8 @@ import { Guardian } from "./components";
 import { Provider } from "react-redux";
 import { store } from "./store";
 
-import HomePage from "./views/Homepage";
-import Pictures from "./views/Pictures";
+import PictureList from "./views/Picture/List";
+import PictureDetails from "./views/Picture/Details";
 import Login from "./views/Login";
 
 import theme from "./theme";
@@ -19,6 +19,7 @@ import theme from "./theme";
 
 class App extends Component {
   render() {
+    console.log("render");
     return (
       <Provider store={store}>
         <ThemeProvider theme={theme}>
@@ -28,8 +29,12 @@ class App extends Component {
               <Guardian
                 render={() => (
                   <Switch>
-                    <Route exact path="/" component={HomePage} />
-                    <Route exact path="/pictures" component={Pictures} />
+                    <Route exact path="/pictures" component={PictureList} />
+                    <Route
+                      exact
+                      path="/pictures/:id"
+                      component={PictureDetails}
+                    />
                   </Switch>
                 )}
               />

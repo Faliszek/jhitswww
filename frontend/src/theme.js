@@ -16,7 +16,7 @@ const theme = {
     // Defaults
     gridSize: 24, // rem
     gutterWidth: 1, // rem
-    outerMargin: 2, // rem
+    outerMargin: 0, // rem
     mediaQuery: "only screen",
     container: {
       sm: 46, // rem

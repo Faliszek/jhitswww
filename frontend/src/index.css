@@ -4,6 +4,7 @@ body {
   font-family: sans-serif;
   font-size: 16px;
   transition: 0.3s all ease;
+  color: #fff;
 }
 
 .shadow-1 {
@@ -11,4 +12,25 @@ body {
 }
 .shadow-2 {
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.help-block {
+  transform-origin: center left;
+}
+
+.slide-enter {
+  opacity: 0.01;
+  transform: scale(0.9) translateX(50%);
+}
+.slide-enter-active {
+  opacity: 1;
+  transform: scale(1) translateX(0%);
+}
+.slide-exit {
+  opacity: 1;
+  transform: scale(1) translateX(0%);
+}
+.slide-exit-active {
+  opacity: 0.01;
+  transform: scale(0.9) translateX(50%);
 }

@@ -2,7 +2,6 @@
 import { createStore, applyMiddleware, compose } from "redux";
 import { routerMiddleware } from "react-router-redux";
 import thunkMiddleware from "redux-thunk";
-import createHistory from "history/createBrowserHistory";
 import throttle from "lodash/throttle";
 import { saveState, loadState } from "./localStorage";
 import reducers from "./reducers"; // Or wherever you keep your reducers

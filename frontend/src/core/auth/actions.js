@@ -10,7 +10,7 @@ export function signIn(payload: SignInPayload) {
     console.log("done");
 
     dispatch({ type: "SIGN_IN", payload });
-    dispatch(push("/"));
+    dispatch(push("/pictures"));
   };
 }
 

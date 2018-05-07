@@ -65,7 +65,7 @@ class Login extends Component<Props, State> {
           <Col xs={24} md={12} lg={8}>
             <LoginWrap>
               <LoginForm onSubmit={this.onSubmit}>
-                <Icon shadow={1}>lock</Icon>
+                <Icon shadow={1} type="lock" />
                 <FormInputs>
                   <Input
                     type="email"
