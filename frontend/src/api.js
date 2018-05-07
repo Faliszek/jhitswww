@@ -3,6 +3,7 @@ import decodeJwt from "jwt-decode";
 import qs from "query-string";
 import { store } from "./store";
 import axios from "axios";
+import numeral from "numeral";
 // $FlowFixMe
 //LOCAL
 
@@ -31,6 +32,7 @@ export const API_URL: string = `${ROOT_URL}/backend/api`;
 
 export function get(path: string, params: Object = undefined) {
   const { auth } = store.getState();
+  // axios.defaults.headers.common["Content-Type"] = "text/plain;charset=UTF-8";
   if (auth.accessToken) {
     axios.defaults.headers.common["Authorization"] = `Bearer ${
       auth.accessToken
@@ -41,8 +43,10 @@ export function get(path: string, params: Object = undefined) {
   return axios.get(`${API_URL}${path}.php${query}`);
 }
 
-export function post(path: string, data: Object) {
-  return axios.post(`${API_URL}${path}.php`, JSON.stringify(data), {
+export function post(path: string, data: Object, params: Object = undefined) {
+  const query = params ? `?${qs.stringify(params)}` : "";
+
+  return axios.post(`${API_URL}${path}.php${query}`, JSON.stringify(data), {
     headers: {
       "Content-Type": "text/plain;charset=UTF-8"
     }
@@ -73,5 +77,16 @@ export function getImage(id) {
 }
 
 export function getComments(id) {
-  return get(`/comment`, { id }).then(res => res.data);
+  return get(`/comment`, { id }).then(res => [
+    ...res.data.comments.map(c => ({
+      ...c,
+      created: numeral(c.created).value()
+    }))
+  ]);
+}
+
+export function addComment(id, author, text) {
+  return post(`/comment`, { author, text }, { id }).then(res =>
+    console.log(res)
+  );
 }

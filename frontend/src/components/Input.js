@@ -4,10 +4,19 @@ import styled from "styled-components";
 import theme from "../theme";
 
 type Props = {
-  type: "email" | "password"
+  type: "email" | "password" | "text"
 };
 
 const Input = (props: Props) => {
+  if (props.type === "textarea") {
+    return (
+      <InputStyled>
+        <div className="input-wrap">
+          <textarea {...props} />{" "}
+        </div>{" "}
+      </InputStyled>
+    );
+  }
   return (
     <InputStyled>
       <div className="input-wrap">
@@ -28,7 +37,8 @@ const InputStyled = styled.div`
   .input-wrap {
     position: relative;
 
-    input {
+    input,
+    textarea {
       outline: none;
       border-top: 0;
       border-left: 0;

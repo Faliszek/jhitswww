@@ -2,7 +2,7 @@
 
 const theme = {
   darkBlue: "#395f9e",
-  blue: "#5082d4",
+  blue: "#192232",
   gray: "#BDBDBD",
   black: "#212121",
   shadow: {
