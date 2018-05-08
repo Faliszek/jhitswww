@@ -10,6 +10,7 @@ import { store } from "./store";
 
 import PictureList from "./views/Picture/List";
 import PictureDetails from "./views/Picture/Details";
+import Canvas from "./views/Canvas";
 import Login from "./views/Login";
 
 import theme from "./theme";
@@ -34,6 +35,8 @@ class App extends Component {
                       path="/pictures/:id"
                       component={PictureDetails}
                     />
+
+                    <Route exact path="/canvas" component={Canvas} />
                   </Switch>
                 )}
               />

@@ -55,6 +55,8 @@ const InputStyled = styled.div`
       border-bottom-left-radius: 0.8rem;
       border-bottom-right-radius: 0.8rem;
       transition: 0.3s background ease;
+      max-width: 300px;
+      margin: 0 auto;
       &:focus {
         background: rgba(255, 255, 255, 0.45);
       }

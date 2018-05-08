@@ -79,12 +79,20 @@ const Content = styled.div`
     width: 75%;
     text-align: center;
     margin: 2rem 0;
+    @media screen and (max-width: 992px) {
+      width: 90%;
+      font-size: 2.5rem;
+    }
   }
 
   p {
     font-size: 1.2rem;
     width: 60%;
     text-align: center;
+    @media screen and (max-width: 992px) {
+      width: 90%;
+      font-size: 0.9rem;
+    }
   }
 
   button {

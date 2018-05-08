@@ -20,7 +20,7 @@ IF NOT EXISTS `images`
 `title` TEXT,
 `description` TEXT,
 `url` TEXT,
-`created` BIGINT
+`created` INT
 );
 
 CREATE TABLE
@@ -29,7 +29,7 @@ IF NOT EXISTS `comments` (
   `image_id` INT (6),
   `author` TEXT,
   `text` TEXT,
-  `created` BIGINT
+  `created` INT 
 );
 
 

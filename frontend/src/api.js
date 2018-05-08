@@ -12,24 +12,6 @@ export const ROOT_URL = "http://ux.up.krakow.pl/~pfalisz";
 export const MEDIA_URL: string = `${ROOT_URL}`;
 export const API_URL: string = `${ROOT_URL}/backend/api`;
 
-// export function fetch(path: string, args: Object) {
-//   let params = {
-//     ...args
-//   };
-
-//   return window.fetch(`${API_URL}${path}.php`, params).then(res => {
-//     if ([200, 201].includes(res.status)) {
-//       return res
-//         .json()
-//         .then(data => Promise.resolve({ status: res.status, data }));
-//     } else {
-//       return res
-//         .text()
-//         .then(message => Promise.reject({ status: res.status, message }));
-//     }
-//   });
-// }
-
 export function get(path: string, params: Object = undefined) {
   const { auth } = store.getState();
   // axios.defaults.headers.common["Content-Type"] = "text/plain;charset=UTF-8";

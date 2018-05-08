@@ -102,11 +102,12 @@ const PictureDetailsStyled = styled(Grid)`
     height: auto;
     max-width: 100%;
     max-height: 100%;
+    padding-bottom: 2.5rem;
   }
   .right-col {
     background: rgba(255, 255, 255, 0.1);
-    padding: 1rem 2rem;
     border-radius: 2rem;
+    padding: 1rem;
   }
 `;
 

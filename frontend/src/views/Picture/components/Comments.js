@@ -41,12 +41,15 @@ class Comments extends Component {
 
 const Comment = styled.div`
   background: rgba(255, 255, 255, 0.1);
-  padding: 2rem 2.5rem;
   border-radius: 2rem;
-  margin-bottom: 1rem;
-
+  width: 90%;
+  margin: 0 auto 1rem;
+  padding: 1rem;
   .text {
     margin: 2rem 0;
+    @media screen and (max-width: 992px) {
+      margin: 1rem 0;
+    }
   }
 `;
 export default Comments;

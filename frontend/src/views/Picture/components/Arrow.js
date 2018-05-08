@@ -32,6 +32,11 @@ export const ArrowStyled = styled.div`
   ${props => (props.side === "left" ? "left: 0" : "right:0")};
   z-index: 100;
 
+  @media screen and (max-width: 600px) {
+    top: unset;
+    bottom: 10%;
+  }
+
   &:hover {
     transform: scale(1.15);
   }

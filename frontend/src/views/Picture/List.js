@@ -110,7 +110,7 @@ const PicturesStyled = styled(Grid)``;
 
 const Slider = styled.div`
   height: 100vh;
-  overflow-y: hidden;
+  overflow-x: hidden;
 `;
 
 const SlideWrap = styled.div`
