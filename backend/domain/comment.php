@@ -35,12 +35,14 @@ class Comment
         $imageId = $r['imageId'];
         $author = $r['author'];
         $text = $r['text'];
+        $created = $r['created'];
 
         $imageId = htmlspecialchars(strip_tags($imageId));
         $author = htmlspecialchars(strip_tags($author));
         $text = htmlspecialchars(strip_tags($text));
-
-        $commentQuery = $this->commentReadModel->newComment($imageId, $author, $text);
+        $created = htmlspecialchars(strip_tags($created));
+        var_dump($created);
+        $commentQuery = $this->commentReadModel->newComment($imageId, $author, $text, $created);
 
         return $commentQuery;
 

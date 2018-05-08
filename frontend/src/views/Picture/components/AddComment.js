@@ -3,16 +3,13 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 
-import { Grid, Col, Row } from "react-styled-flexboxgrid";
-
 import { Input, Button } from "../../../components";
-
-import theme from "../../../theme";
 
 class AddComment extends Component {
   state = {
     text: "",
-    author: ""
+    author: "",
+    created: 0
   };
 
   onChange = (e: InputEvent, type: "author" | "text") => {
@@ -21,9 +18,10 @@ class AddComment extends Component {
   };
 
   onSubmit = e => {
-    console.log(e);
     e.preventDefault();
-    this.props.handleSubmit(this.state);
+
+    this.props.handleSubmit({ ...this.state, created: Date.now() });
+    this.setState({ text: "", author: "" });
   };
 
   render() {

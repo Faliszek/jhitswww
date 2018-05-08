@@ -13,7 +13,7 @@ class Comments extends Component {
 
     if (!this.props.comments) return null;
     return (
-      <Row>
+      <Row style={{ paddingBottom: "2rem" }}>
         {this.props.comments.map(c => (
           <Col xs={24} key={c.id}>
             <Comment>
@@ -23,7 +23,7 @@ class Comments extends Component {
                 </Col>
                 <Col xs={12}>
                   <strong>Data utworzenia: </strong>
-                  {moment(c.created).format("DD.MM.YYYY HH:mm")}
+                  {moment(parseInt(c.created, 10)).format("DD.MM.YYYY HH:mm")}
                 </Col>
                 <Col xs={24}>
                   <div className="text">
@@ -44,6 +44,7 @@ const Comment = styled.div`
   padding: 2rem 2.5rem;
   border-radius: 2rem;
   margin-bottom: 1rem;
+
   .text {
     margin: 2rem 0;
   }

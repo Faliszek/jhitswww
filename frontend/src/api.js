@@ -7,7 +7,7 @@ import numeral from "numeral";
 // $FlowFixMe
 //LOCAL
 
-// export const API_URL: string = "http://localhost:8080/jhitswww/backend/api";
+// export const ROOT_URL: string = "http://localhost:8080/jhitswww";
 export const ROOT_URL = "http://ux.up.krakow.pl/~pfalisz";
 export const MEDIA_URL: string = `${ROOT_URL}`;
 export const API_URL: string = `${ROOT_URL}/backend/api`;
@@ -45,7 +45,6 @@ export function get(path: string, params: Object = undefined) {
 
 export function post(path: string, data: Object, params: Object = undefined) {
   const query = params ? `?${qs.stringify(params)}` : "";
-  console.log(query);
   return axios.post(`${API_URL}${path}.php${query}`, JSON.stringify(data), {
     headers: {
       "Content-Type": "text/plain;charset=UTF-8"
@@ -86,8 +85,9 @@ export function getComments(id) {
 }
 
 export function addComment(id, author, text) {
-  console.log(author, text);
-  return post(`/comment`, { imageId: id, author, text }, { id }).then(res =>
-    console.log(res)
-  );
+  return post(
+    `/comment`,
+    { imageId: id, author, text, created: Date.now() },
+    { id }
+  ).then(res => console.log(res));
 }

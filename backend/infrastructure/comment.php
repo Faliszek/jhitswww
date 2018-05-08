@@ -23,11 +23,10 @@ class CommentReadModel
         return $cQuery;
     }
 
-    public function newComment($imageId, $author, $text)
+    public function newComment($imageId, $author, $text, $created)
     {
-
-        $now = time();
-        $query = sprintf("INSERT INTO  comments (image_id, author, text, created) VALUES (%d, '%s', '%s', %d);", $imageId, $author, $text, $now);
+        var_dump($created);
+        $query = sprintf("INSERT INTO  comments (image_id, author, text, created) VALUES (%d, '%s', '%s', %d);", $imageId, $author, $text, $created);
         $cQuery = $this->conn->prepare($query);
 
         if ($cQuery->execute()) {

@@ -28,16 +28,14 @@ class PictureDetails extends Component<Props, State> {
 
   fetchComments = () => {
     const { id } = this.props.match.params;
-    Api.getComments(id).then(
-      comments =>
-        console.log(comments) ||
-        this.setState({ comments, loadingComments: false })
+    Api.getComments(id).then(comments =>
+      this.setState({ comments, loadingComments: false })
     );
   };
 
-  onSubmit = ({ author, text }) => {
+  onSubmit = ({ author, text, created }) => {
     const { id } = this.props.match.params;
-    Api.addComment(id, author, text)
+    Api.addComment(id, author, text, created)
       .then(res => {
         this.setState({ loadingComments: false, error: false });
         this.fetchComments();
@@ -88,7 +86,9 @@ class PictureDetails extends Component<Props, State> {
 
 const PictureDetailsStyled = styled(Grid)`
   background: ${theme.blue};
-  min-height: 100vh;
+  min-height: 90vh;
+  overflow-y: scroll;
+  padding-bottom: 10vh;
   h1 {
     padding-top: 5rem;
     text-align: left;
