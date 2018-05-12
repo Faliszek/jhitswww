@@ -3,7 +3,7 @@
 import React, { Component } from "react";
 import { ThemeProvider } from "styled-components";
 
-import { Switch, Route, HashRouter } from "react-router-dom";
+import { Switch, Route, HashRouter, Redirect } from "react-router-dom";
 import { Guardian } from "./components";
 import { Provider } from "react-redux";
 import { store } from "./store";
@@ -26,6 +26,12 @@ class App extends Component {
               <Guardian
                 render={() => (
                   <Switch>
+                    <Route
+                      exact
+                      path="/"
+                      render={() => <Redirect to="/pictures" />}
+                    />
+                    <Route exact path="/" component={PictureList} />
                     <Route exact path="/pictures" component={PictureList} />
                     <Route
                       exact
