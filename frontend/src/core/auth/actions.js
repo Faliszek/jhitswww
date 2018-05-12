@@ -7,8 +7,6 @@ import type { SignInPayload } from "../../actionType";
 
 export function signIn(payload: SignInPayload) {
   return (dispatch: Dispatch) => {
-    console.log("done");
-
     dispatch({ type: "SIGN_IN", payload });
     dispatch(push("/pictures"));
   };

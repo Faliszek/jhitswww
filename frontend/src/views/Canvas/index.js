@@ -1,5 +1,6 @@
 //@flow
 import React, { Component } from "react";
+import styled from "styled-components";
 
 class Canvas extends Component {
   state = {
@@ -32,7 +33,6 @@ class Canvas extends Component {
   };
 
   changeDirection = (y, direction) => {
-    console.log(window.innerHeight, y);
     if (window.innerHeight > this.state.radius && direction === "down") {
       return {
         direction: "up"
@@ -52,16 +52,36 @@ class Canvas extends Component {
   };
   render() {
     return (
-      <canvas
-        onMouseMove={this.onMouseMove}
-        id="myCanvas"
-        width={window.innerWidth}
-        height={window.innerHeight}
-      >
-        asd
-      </canvas>
+      <CanvasStyled>
+        <h1>Proszę poruszać kursorem po ekranie</h1>
+
+        <canvas
+          onMouseMove={this.onMouseMove}
+          id="myCanvas"
+          width={window.innerWidth}
+          height={window.innerHeight}
+        />
+      </CanvasStyled>
     );
   }
 }
+
+const CanvasStyled = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  canvas {
+    position: relative;
+    z-index: 10;
+  }
+  h1 {
+    color: #000;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+`;
 
 export default Canvas;

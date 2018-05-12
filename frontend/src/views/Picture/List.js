@@ -9,11 +9,10 @@ import { Image as Slide, Loader } from "../../components";
 import Arrow from "./components/Arrow";
 import { getImages } from "../../api";
 
-import theme from "../../theme";
-
 type State = {
   pictures: Array<*>
 };
+
 class Pictures extends Component<{}, State> {
   state = {
     index: 0,
@@ -41,9 +40,6 @@ class Pictures extends Component<{}, State> {
     });
   };
 
-  rightArrowDisabled = () =>
-    this.state.index + 1 === this.state.pictures.length;
-
   onPrevClick = () => {
     this.setState(state => {
       if (this.leftArrowDisabled()) return null;
@@ -53,6 +49,9 @@ class Pictures extends Component<{}, State> {
       };
     });
   };
+
+  rightArrowDisabled = () =>
+    this.state.index + 1 === this.state.pictures.length;
 
   leftArrowDisabled = () => this.state.index === 0;
 
@@ -110,7 +109,7 @@ const PicturesStyled = styled(Grid)``;
 
 const Slider = styled.div`
   height: 100vh;
-  overflow-x: hidden;
+  overflow: hidden;
 `;
 
 const SlideWrap = styled.div`
@@ -119,6 +118,7 @@ const SlideWrap = styled.div`
   opacity: ${props => props.opacity};
   z-index: ${props => props.index};
   transition: 0.6s all ease;
+  overflow: hidden;
 `;
 
 export default connect(null, { push })(Pictures);

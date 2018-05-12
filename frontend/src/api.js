@@ -14,7 +14,6 @@ export const API_URL: string = `${ROOT_URL}/backend/api`;
 
 export function get(path: string, params: Object = undefined) {
   const { auth } = store.getState();
-  // axios.defaults.headers.common["Content-Type"] = "text/plain;charset=UTF-8";
   if (auth.accessToken) {
     axios.defaults.headers.common["Authorization"] = `Bearer ${
       auth.accessToken

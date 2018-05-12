@@ -7,7 +7,7 @@ import { withRouter } from "react-router-dom";
 import { Grid, Col, Row } from "react-styled-flexboxgrid";
 
 import styled from "styled-components";
-import { Icon, Input, Button } from "../../components";
+import { Icon, Input, Button, Loader } from "../../components";
 
 import * as Api from "../../api";
 import theme from "../../theme";
@@ -30,9 +30,6 @@ class Login extends Component<Props, State> {
     errorText: ""
   };
 
-  componentDidMount() {
-    // Api.getImages();
-  }
   onSubmit = e => {
     e.preventDefault();
     const { email, password } = this.state;
@@ -43,13 +40,11 @@ class Login extends Component<Props, State> {
         this.props.signIn(accessData);
       })
       .catch(err => {
-        this.setState({ loading: false, error: true });
-
-        if (err.status === 422) {
-          this.setState({ errorText: "Niepoprawne dane logowania" });
-        } else {
-          this.setState({ errorText: "Wystąpił nieoczekiwany błąd" });
-        }
+        this.setState({
+          loading: false,
+          error: true,
+          errorText: "Niepoprawne dane logowania"
+        });
       });
   };
 
@@ -80,6 +75,16 @@ class Login extends Component<Props, State> {
                     placeholder="Hasło"
                   />
                 </FormInputs>
+                <InfoWrap>
+                  {this.state.loading ? (
+                    <Loader loading={this.state.loading} />
+                  ) : (
+                    <Error error={this.state.error}>
+                      {this.state.errorText}
+                    </Error>
+                  )}
+                </InfoWrap>
+
                 <Button
                   className="shadow-1"
                   loading={this.state.loading}
@@ -111,6 +116,16 @@ const LoginStyled = styled(Grid)`
     position: absolute;
     z-index: 2;
   }
+`;
+const InfoWrap = styled.div`
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+`;
+const Error = styled.div`
+  color: red;
 `;
 
 const LoginWrap = styled.div`
@@ -149,7 +164,7 @@ const LoginForm = styled.form`
 `;
 
 const FormInputs = styled.div`
-  margin: 2rem 0 1.25rem;
+  margin: 2rem 0 0;
 `;
 
 export default withRouter(connect(null, { signIn })(Login));

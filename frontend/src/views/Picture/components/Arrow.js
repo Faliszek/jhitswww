@@ -23,7 +23,7 @@ export const ArrowStyled = styled.div`
   display: block;
   height: 8rem;
   width: 8rem;
-  position: absolute;
+  position: fixed;
   top: 50%;
   transform: translateY(-50%);
   cursor: pointer;
