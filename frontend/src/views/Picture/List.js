@@ -34,13 +34,13 @@ class PictureList extends Component<Props, State> {
     return (
       <Styled>
         <div>
-          <h1>ODWIEDZONE MIEJSCA</h1>
+          <h1>WPISY NA BLOGU</h1>
 
           {this.state.pictures.map((p, index) => (
             <ImgWrap
               key={index}
               className="shadow-1"
-              onClick={() => this.props.push(`/pictures/${p.id}`)}
+              onClick={() => this.props.push(`/articles/${p.id}`)}
             >
               <header>
                 <img className="shadow-2" src={p.url} alt={p.title} />
@@ -51,11 +51,9 @@ class PictureList extends Component<Props, State> {
                 <div>
                   <Button
                     className="shadow-2"
-                    onClick={() =>
-                      this.props.push(`/picutres/${this.props.id}`)
-                    }
+                    onClick={() => this.props.push(`/articles/${p.id}`)}
                   >
-                    Przejdź do komentarzy
+                    Przejdź do artykułu
                   </Button>
                 </div>
               </div>

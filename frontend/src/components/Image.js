@@ -27,7 +27,7 @@ class ImageWrap extends Component<Props, State> {
               className="shadow-2"
               onClick={() => this.props.action(this.props.id)}
             >
-              Przejdź do komentarzy
+              Przejdź do artykułu
             </Button>
           </Content>
         </ImgCover>

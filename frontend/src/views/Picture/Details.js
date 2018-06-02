@@ -1,6 +1,7 @@
 //@flow
 
 import React, { Component, Fragment } from "react";
+import _ from "lodash/fp";
 import styled from "styled-components";
 import { Grid, Row, Col } from "react-styled-flexboxgrid";
 
@@ -56,7 +57,17 @@ class PictureDetails extends Component<Props, State> {
     if (this.state.loading) return <Loader loading={this.state.loading} full />;
 
     if (!this.state.img) return null;
-
+    if (_.isEmpty(this.state.img)) {
+      return (
+        <NotFound>
+          <h1>
+            Podany wpis nie istnieje<span role="img" aria-label="sad">
+              ☹️
+            </span>
+          </h1>
+        </NotFound>
+      );
+    }
     return (
       <PictureDetailsStyled fluid>
         <Row center="xs">
@@ -115,6 +126,17 @@ const Wrap = styled.div`
   background: ${theme.blockBackground};
   padding: 16px;
   border-radius: 8px;
+`;
+
+const NotFound = styled.div`
+  padding-top: 150px;
+
+  h1 {
+    span {
+      padding-left: 15px;
+    }
+    text-align: center;
+  }
 `;
 const PictureDetailsStyled = styled(Grid)`
   min-height: 90vh;

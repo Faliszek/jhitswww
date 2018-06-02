@@ -30,10 +30,10 @@ class App extends Component {
                 render={() => (
                   <Switch>
                     <Route exact path="/" component={HomePage} />
-                    <Route exact path="/pictures" component={PictureList} />
+                    <Route exact path="/articles" component={PictureList} />
                     <Route
                       exact
-                      path="/pictures/:id"
+                      path="/articles/:id"
                       component={PictureDetails}
                     />
 

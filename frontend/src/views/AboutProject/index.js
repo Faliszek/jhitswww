@@ -19,9 +19,10 @@ class AboutProject extends Component<Props, State> {
           <h1>O PROJEKCIE</h1>
 
           <HeadInfo>
-            Projekt jest rodzajem albumu zdjęć z wakacji z krotkim opisem
-            odwiedzanego miejsca i zdjeciem, z możliwością komentowania dla
-            odwiedzających.
+            Projekt jest blogiem podróżniczo-fotograficznym, w którym publikuje
+            zdjęcia i relacje z pobytu w różych zakątkach świata. Gdzie
+            użytkownicy mają możliwość komentowania i wypowiadania się na temat
+            konkretnych wpisów na blogu.
           </HeadInfo>
           <h1>UŻYTE TECHNOLOGIE</h1>
           <TechWrap className="shadow-1">

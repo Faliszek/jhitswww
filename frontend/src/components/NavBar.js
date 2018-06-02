@@ -14,7 +14,7 @@ const NavBar = props => {
     <NavBarStyled className="shadow-2">
       <div>
         <Link to="/">Strona główna</Link>
-        <Link to="/pictures">Galeria zdjęć</Link>
+        <Link to="/articles">Wpisy na blogu</Link>
         <Link to="/about-project">O Projekcie</Link>
         <Link to="/game">Gra</Link>
       </div>

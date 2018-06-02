@@ -1,5 +1,6 @@
 //@flow
 import decodeJwt from "jwt-decode";
+import _ from "lodash/fp";
 import qs from "query-string";
 import { store } from "./store";
 import axios from "axios";
@@ -50,10 +51,16 @@ export function getImages() {
 }
 
 export function getImage(id) {
-  return get(`/image`, { id }).then(img => ({
-    ...img.data,
-    url: `${MEDIA_URL}${img.data.url}`
-  }));
+  return get(`/image`, { id }).then(img => {
+    if (_.isEmpty(img.data)) {
+      return {};
+    } else {
+      return {
+        ...img.data,
+        url: `${MEDIA_URL}${img.data.url}`
+      };
+    }
+  });
 }
 
 export function getComments(id) {

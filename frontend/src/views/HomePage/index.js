@@ -59,7 +59,7 @@ class HomePage extends Component<{}, State> {
     return (this.state.index - index) * window.innerWidth;
   };
 
-  goToImage = id => this.props.push(`/pictures/${id}`);
+  goToImage = id => this.props.push(`/articles/${id}`);
 
   render() {
     return (
