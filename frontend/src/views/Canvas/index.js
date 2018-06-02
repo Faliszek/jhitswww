@@ -77,7 +77,7 @@ const CanvasStyled = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: ${theme.blue};
+  background-color: ${theme.secondary};
   canvas {
     position: relative;
     z-index: 10;

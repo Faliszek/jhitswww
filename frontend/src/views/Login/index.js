@@ -106,7 +106,7 @@ const LoginStyled = styled(Grid)`
   z-index: 1;
   &::after {
     content: "";
-    background-color: ${theme.blue};
+    background-color: ${theme.secondary};
     top: 0;
     left: 0;
     bottom: 0;
@@ -147,7 +147,7 @@ const LoginForm = styled.form`
   border-radius: 8px;
   background: ${theme.blockBackground};
   i {
-    background: ${theme.blue};
+    background: ${theme.primary};
     color: ${theme.color.text};
     font-size: 4rem;
     border-radius: 50%;

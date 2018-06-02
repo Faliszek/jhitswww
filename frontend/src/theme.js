@@ -1,11 +1,11 @@
 //@flow
 
 const theme = {
-  accent: "#395f9e",
-  blue: "#2196f3",
+  primary: "#A11120",
+  secondary: "#0e0e0e",
   gray: "#BDBDBD",
-  black: "#212121",
-  blockBackground: "rgba(0,0,0,0.2)",
+  black: "#050404",
+  blockBackground: "rgba(176,176,176,0.2)",
   color: {
     text: "#fff"
   },

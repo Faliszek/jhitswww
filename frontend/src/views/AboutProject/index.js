@@ -102,9 +102,7 @@ class AboutProject extends Component<Props, State> {
             </p>
             <Button
               className="shadow-1"
-              onClick={() =>
-                window.open("https://www.w3schools.com/php/default.asp")
-              }
+              onClick={() => window.open("https://dev.mysql.com/doc/?")}
             >
               Naucz się MYSQL
             </Button>
@@ -118,7 +116,7 @@ class AboutProject extends Component<Props, State> {
 const Styled = styled.div`
   color: ${theme.color.text};
   padding-top: 80px;
-  background: ${theme.blue};
+  background: ${theme.secondary};
 
   h1 {
     padding: 25px 0;

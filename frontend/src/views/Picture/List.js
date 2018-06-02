@@ -34,10 +34,11 @@ class PictureList extends Component<Props, State> {
     return (
       <Styled>
         <div>
-          <h1>GALERIA ZDJĘĆ</h1>
+          <h1>ODWIEDZONE MIEJSCA</h1>
 
           {this.state.pictures.map((p, index) => (
             <ImgWrap
+              key={index}
               className="shadow-1"
               onClick={() => this.props.push(`/pictures/${p.id}`)}
             >
@@ -69,7 +70,7 @@ class PictureList extends Component<Props, State> {
 const Styled = styled.div`
   color: ${theme.color.text};
   padding-top: 80px;
-  background: ${theme.blue};
+  background: ${theme.secondary};
 
   h1 {
     padding: 25px 0;

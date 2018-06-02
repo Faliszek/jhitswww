@@ -16,7 +16,7 @@ const NavBar = props => {
         <Link to="/">Strona główna</Link>
         <Link to="/pictures">Galeria zdjęć</Link>
         <Link to="/about-project">O Projekcie</Link>
-        <Link to="/game">Canvas</Link>
+        <Link to="/game">Gra</Link>
       </div>
       <Button onClick={props.signOut}>Wyloguj</Button>
     </NavBarStyled>

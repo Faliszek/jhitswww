@@ -106,12 +106,17 @@ const Wrap = styled.div`
   border-radius: 8px;
 `;
 const PictureDetailsStyled = styled(Grid)`
-  background: ${theme.blue};
   min-height: 90vh;
   overflow-y: scroll;
   padding-bottom: 10vh;
+  color: ${theme.color.text};
+  padding-top: 80px;
+  background: ${theme.secondary};
+
   h1 {
     padding-top: 5rem;
+    text-transform: uppercase;
+    padding: 25px 0;
     text-align: left;
   }
   h2 {

@@ -8,7 +8,7 @@ import { Grid } from "react-styled-flexboxgrid";
 import { Image as Slide, Loader } from "../../components";
 import Arrow from "./components/Arrow";
 import { getImages } from "../../api";
-
+import theme from "../../theme";
 type State = {
   pictures: Array<*>
 };
@@ -119,6 +119,10 @@ const SlideWrap = styled.div`
   z-index: ${props => props.index};
   transition: 0.6s all ease;
   overflow: hidden;
+  background-color: ${theme.secondary};
+  img {
+    opacity: 0.75;
+  }
 `;
 
 export default connect(null, { push })(HomePage);
