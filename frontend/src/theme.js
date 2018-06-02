@@ -1,10 +1,14 @@
 //@flow
 
 const theme = {
-  darkBlue: "#395f9e",
-  blue: "#192232",
+  accent: "#395f9e",
+  blue: "#2196f3",
   gray: "#BDBDBD",
   black: "#212121",
+  blockBackground: "rgba(0,0,0,0.2)",
+  color: {
+    text: "#fff"
+  },
   shadow: {
     small: "0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);",
     medium: "0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);"

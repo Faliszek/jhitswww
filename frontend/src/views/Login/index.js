@@ -104,11 +104,9 @@ class Login extends Component<Props, State> {
 const LoginStyled = styled(Grid)`
   position: relative;
   z-index: 1;
-  background: #585858;
   &::after {
     content: "";
     background-color: ${theme.blue};
-    opacity: 0.9;
     top: 0;
     left: 0;
     bottom: 0;
@@ -126,6 +124,7 @@ const InfoWrap = styled.div`
 `;
 const Error = styled.div`
   color: red;
+  opacity: 0.7;
 `;
 
 const LoginWrap = styled.div`
@@ -145,11 +144,11 @@ const LoginForm = styled.form`
   width: 100%;
 
   padding: 2rem 2.5rem;
-  border-radius: 2rem;
-  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  background: ${theme.blockBackground};
   i {
     background: ${theme.blue};
-    color: #fff;
+    color: ${theme.color.text};
     font-size: 4rem;
     border-radius: 50%;
     padding: 1rem;

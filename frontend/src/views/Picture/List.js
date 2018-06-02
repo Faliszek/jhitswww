@@ -1,19 +1,19 @@
 //@flow
-
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import { push } from "react-router-redux";
 import styled from "styled-components";
-import { Grid } from "react-styled-flexboxgrid";
-import { Image as Slide, Loader } from "../../components";
-import Arrow from "./components/Arrow";
 import { getImages } from "../../api";
+import { Button } from "../../components";
+import theme from "../../theme";
+
+type Props = {};
 
 type State = {
   pictures: Array<*>
 };
 
-class Pictures extends Component<{}, State> {
+class PictureList extends Component<Props, State> {
   state = {
     index: 0,
     pictures: [],
@@ -30,95 +30,125 @@ class Pictures extends Component<{}, State> {
     });
   }
 
-  onNextClick = () => {
-    this.setState(state => {
-      if (this.rightArrowDisabled()) return null;
-      return {
-        ...state,
-        index: state.index + 1
-      };
-    });
-  };
-
-  onPrevClick = () => {
-    this.setState(state => {
-      if (this.leftArrowDisabled()) return null;
-      return {
-        ...state,
-        index: state.index - 1
-      };
-    });
-  };
-
-  rightArrowDisabled = () =>
-    this.state.index + 1 === this.state.pictures.length;
-
-  leftArrowDisabled = () => this.state.index === 0;
-
-  calculatePosition = index => {
-    return (this.state.index - index) * window.innerWidth;
-  };
-
-  goToImage = id => this.props.push(`/pictures/${id}`);
-
   render() {
     return (
-      <PicturesStyled fluid>
-        <Arrow
-          onClick={this.onPrevClick}
-          side="left"
-          disabled={this.leftArrowDisabled()}
-        />
-        <Slider>
-          {this.state.loading ? (
-            <Loader loading={this.state.loading} />
-          ) : (
-            <Fragment>
-              {this.state.pictures.map((p, index) => {
-                return (
-                  <SlideWrap
-                    key={p.id}
-                    index={index}
-                    right={this.calculatePosition(index)}
+      <Styled>
+        <div>
+          <h1>GALERIA ZDJĘĆ</h1>
+
+          {this.state.pictures.map((p, index) => (
+            <ImgWrap
+              className="shadow-1"
+              onClick={() => this.props.push(`/pictures/${p.id}`)}
+            >
+              <header>
+                <img className="shadow-2" src={p.url} alt={p.title} />
+                <h3>{p.title}</h3>
+              </header>
+              <div className="wrap">
+                <p>{p.description}</p>
+                <div>
+                  <Button
+                    className="shadow-2"
+                    onClick={() =>
+                      this.props.push(`/picutres/${this.props.id}`)
+                    }
                   >
-                    <Slide
-                      title={p.title}
-                      desc={p.description}
-                      src={p.url}
-                      alt={p.title}
-                      id={p.id}
-                      action={this.goToImage}
-                    />
-                  </SlideWrap>
-                );
-              })}
-            </Fragment>
-          )}
-        </Slider>
-        <Arrow
-          onClick={this.onNextClick}
-          side="right"
-          disabled={this.rightArrowDisabled()}
-        />
-      </PicturesStyled>
+                    Przejdź do komentarzy
+                  </Button>
+                </div>
+              </div>
+            </ImgWrap>
+          ))}
+        </div>
+      </Styled>
     );
   }
 }
 
-const PicturesStyled = styled(Grid)``;
+const Styled = styled.div`
+  color: ${theme.color.text};
+  padding-top: 80px;
+  background: ${theme.blue};
 
-const Slider = styled.div`
-  height: 100vh;
-  overflow: hidden;
+  h1 {
+    padding: 25px 0;
+  }
+  > div {
+    width: 90%;
+    margin: 0 auto;
+    min-height: 90vh;
+    padding-bottom: 10vh;
+  }
+
+  .wrap {
+    font-size: 1rem;
+    margin: 2rem 0;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+  }
 `;
 
-const SlideWrap = styled.div`
-  position: absolute;
-  right: ${props => `${props.right}px`};
-  opacity: ${props => props.opacity};
-  z-index: ${props => props.index};
-  transition: 0.6s all ease;
-  overflow: hidden;
+const ImgWrap = styled.div`
+  color: ${theme.color.text};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  cursor: pointer;
+
+  padding: 35px 0;
+  margin-bottom: 50px;
+  border-radius: 8px;
+  transition: 0.2s all ease;
+
+  background: ${theme.blockBackground};
+  &:hover {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  }
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 90%;
+    @media screen and (max-width: 992px) {
+      flex-wrap: wrap;
+    }
+  }
+  h3 {
+    color: ${theme.color.text};
+    margin: 0;
+    font-size: 3rem;
+    @media screen and (max-width: 992px) {
+      display: block;
+      width: 100%;
+      text-align: center;
+      margin-top: 18px;
+      margin-bottom: 32px;
+    }
+  }
+  img {
+    max-width: 300px;
+    max-height: 300px;
+    margin-right: 30px;
+    border-radius: 8px;
+    display: block;
+    @media screen and (max-width: 992px) {
+      display: block;
+      width: 100%;
+      margin: 0 auto;
+    }
+  }
+  p {
+    max-width: 90%;
+    font-size: 1rem;
+    padding: 2rem;
+    border-radius: 8px;
+    background: ${theme.blockBackground};
+  }
 `;
 
-export default connect(null, { push })(Pictures);
+export default connect(null, { push })(PictureList);

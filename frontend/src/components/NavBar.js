@@ -13,8 +13,10 @@ const NavBar = props => {
   return (
     <NavBarStyled className="shadow-2">
       <div>
+        <Link to="/">Strona główna</Link>
         <Link to="/pictures">Galeria zdjęć</Link>
-        <Link to="/canvas">Canvas</Link>
+        <Link to="/about-project">O Projekcie</Link>
+        <Link to="/game">Canvas</Link>
       </div>
       <Button onClick={props.signOut}>Wyloguj</Button>
     </NavBarStyled>
@@ -44,7 +46,7 @@ const NavBarStyled = styled.div`
   }
   a {
     opacity: 1;
-    color: #fff;
+    color: ${theme.color.text};
     height: 64px;
     display: flex;
     align-items: center;

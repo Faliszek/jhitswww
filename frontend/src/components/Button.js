@@ -30,7 +30,7 @@ const ButtonStyled = styled.button`
   padding: 0 1rem;
   border-radius: 4px;
   background: ${theme.blue};
-  color: #fff;
+  color: ${theme.color.text};
   border: none;
   height: 2.5rem;
   cursor: pointer;
@@ -41,7 +41,7 @@ const ButtonStyled = styled.button`
   margin: ${props => (props.center ? "0 auto" : "initial")};
 
   &:hover {
-    background: ${theme.darkBlue};
+    background: ${theme.accent};
   }
   &:active {
     border: none;

@@ -1,6 +1,7 @@
 //@flow
 import React, { Component } from "react";
 import styled from "styled-components";
+import theme from "../../theme";
 
 class Canvas extends Component {
   state = {
@@ -17,6 +18,8 @@ class Canvas extends Component {
       ctx.clearRect(0, 0, c.width, c.height);
       ctx.beginPath();
       ctx.arc(x + r / 2, y - 2 * r, r, 0, 2 * Math.PI);
+      ctx.strokeStyle = "#fff";
+      ctx.lineWidth = 10;
       ctx.stroke();
     }, 10);
   }
@@ -61,6 +64,9 @@ class Canvas extends Component {
           width={window.innerWidth}
           height={window.innerHeight}
         />
+        <Info className="shadow-1">
+          Kursor znajduję się w X: {this.state.x}px i Y:{this.state.y}px
+        </Info>
       </CanvasStyled>
     );
   }
@@ -71,17 +77,27 @@ const CanvasStyled = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-
+  background-color: ${theme.blue};
   canvas {
     position: relative;
     z-index: 10;
   }
   h1 {
-    color: #000;
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
+    text-align: center;
   }
+`;
+
+const Info = styled.div`
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  padding: 1rem;
+  background: ${theme.blockBackground};
+  width: 300px;
+  border-radius: 8px;
 `;
 
 export default Canvas;

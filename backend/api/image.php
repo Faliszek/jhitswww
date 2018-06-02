@@ -5,6 +5,8 @@ header("Access-Control-Allow-Credentials: true");
 header('Access-Control-Allow-Methods: GET, OPTIONS');
 header('Access-Control-Max-Age: 1000');
 header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token , Authorization');
+
+header('Content-Type: text/plain; charset=utf-8');
 // include database and object files
 include_once '../domain/image.php';
 include_once '../domain/auth.php';

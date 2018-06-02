@@ -3,10 +3,13 @@
 import React, { Component } from "react";
 import { ThemeProvider } from "styled-components";
 
-import { Switch, Route, HashRouter, Redirect } from "react-router-dom";
+import { Switch, Route, HashRouter } from "react-router-dom";
 import { Guardian } from "./components";
 import { Provider } from "react-redux";
 import { store } from "./store";
+
+import HomePage from "./views/HomePage";
+import AboutProject from "./views/AboutProject";
 
 import PictureList from "./views/Picture/List";
 import PictureDetails from "./views/Picture/Details";
@@ -26,12 +29,7 @@ class App extends Component {
               <Guardian
                 render={() => (
                   <Switch>
-                    <Route
-                      exact
-                      path="/"
-                      render={() => <Redirect to="/pictures" />}
-                    />
-                    <Route exact path="/" component={PictureList} />
+                    <Route exact path="/" component={HomePage} />
                     <Route exact path="/pictures" component={PictureList} />
                     <Route
                       exact
@@ -39,7 +37,12 @@ class App extends Component {
                       component={PictureDetails}
                     />
 
-                    <Route exact path="/canvas" component={Canvas} />
+                    <Route exact path="/game" component={Canvas} />
+                    <Route
+                      exact
+                      path="/about-project"
+                      component={AboutProject}
+                    />
                   </Switch>
                 )}
               />

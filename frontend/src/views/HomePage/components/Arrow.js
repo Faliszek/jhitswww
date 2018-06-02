@@ -43,7 +43,7 @@ export const ArrowStyled = styled.div`
   i {
     font-size: 8rem;
     line-height: 8rem;
-    color: #fff;
+    color: ${theme.color.text};
     opacity: ${props => (props.disabled ? "0.3" : "1")};
   }
 `;

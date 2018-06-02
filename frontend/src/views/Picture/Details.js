@@ -8,6 +8,7 @@ import { Loader } from "../../components";
 import Comments from "./components/Comments";
 import AddComment from "./components/AddComment";
 import theme from "../../theme";
+import moment from "moment";
 import * as Api from "../../api";
 
 type Props = {};
@@ -29,7 +30,13 @@ class PictureDetails extends Component<Props, State> {
   fetchComments = () => {
     const { id } = this.props.match.params;
     Api.getComments(id).then(comments =>
-      this.setState({ comments, loadingComments: false })
+      this.setState({
+        comments: comments.map(c => ({
+          ...c,
+          description: unescape(encodeURIComponent(c.description))
+        })),
+        loadingComments: false
+      })
     );
   };
 
@@ -64,6 +71,16 @@ class PictureDetails extends Component<Props, State> {
               <Fragment>
                 <Col xs={24} md={11}>
                   <img src={this.state.img.url} alt={this.state.img.title} />
+                  <Wrap>
+                    <h2>DATA DODANIA</h2>
+                    <p>
+                      {moment(this.state.img.created * 1000).format(
+                        "DD.MM.YYYY HH:mm"
+                      )}
+                    </p>
+                    <h2>OPIS</h2>
+                    <p>{this.state.img.description}</p>
+                  </Wrap>
                 </Col>
 
                 <Col xs={24} md={11} className="right-col">
@@ -83,7 +100,11 @@ class PictureDetails extends Component<Props, State> {
     );
   }
 }
-
+const Wrap = styled.div`
+  background: ${theme.blockBackground};
+  padding: 16px;
+  border-radius: 8px;
+`;
 const PictureDetailsStyled = styled(Grid)`
   background: ${theme.blue};
   min-height: 90vh;
@@ -95,7 +116,11 @@ const PictureDetailsStyled = styled(Grid)`
   }
   h2 {
     text-align: left;
-    padding-bottom: 1.5rem;
+    margin-bottom: 8px;
+  }
+  p {
+    text-align: left;
+    margin-bottom: 1rem;
   }
   img {
     width: auto;
@@ -105,8 +130,8 @@ const PictureDetailsStyled = styled(Grid)`
     padding-bottom: 2.5rem;
   }
   .right-col {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 2rem;
+    background: ${theme.blockBackground};
+    border-radius: 8px;
     padding: 1rem;
   }
 `;

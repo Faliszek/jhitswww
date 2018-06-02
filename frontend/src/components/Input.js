@@ -47,13 +47,13 @@ const InputStyled = styled.div`
       border-width: 1px;
       font-size: 0.85rem;
       background: rgba(255, 255, 255, 0.25);
-      color: #fff;
+      color: ${theme.color.text};
       padding: 0.75rem 0.5rem;
       width: 100%;
-      border-top-right-radius: 0.8rem;
-      border-top-left-radius: 0.8rem;
-      border-bottom-left-radius: 0.8rem;
-      border-bottom-right-radius: 0.8rem;
+      border-top-right-radius: 8px;
+      border-top-left-radius: 8px;
+      border-bottom-left-radius: 8px;
+      border-bottom-right-radius: 8px;
       transition: 0.3s background ease;
       max-width: 300px;
       margin: 0 auto;

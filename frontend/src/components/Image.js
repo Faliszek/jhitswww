@@ -5,6 +5,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 
 import Button from "./Button";
+import theme from "../theme";
 
 type Props = {
   src: string,
@@ -75,7 +76,7 @@ const Content = styled.div`
   flex-direction: column;
   h1 {
     font-size: 4rem;
-    color: #fff;
+    color: ${theme.color.text};
     width: 75%;
     text-align: center;
     margin: 2rem 0;
