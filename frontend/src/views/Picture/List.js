@@ -1,10 +1,10 @@
 //@flow
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { push } from "react-router-redux";
 import styled from "styled-components";
 import { getImages } from "../../api";
-import { Button } from "../../components";
+import { Button, Loader } from "../../components";
 import theme from "../../theme";
 
 type Props = {};
@@ -35,30 +35,35 @@ class PictureList extends Component<Props, State> {
       <Styled>
         <div>
           <h1>WPISY NA BLOGU</h1>
-
-          {this.state.pictures.map((p, index) => (
-            <ImgWrap
-              key={index}
-              className="shadow-1"
-              onClick={() => this.props.push(`/articles/${p.id}`)}
-            >
-              <header>
-                <img className="shadow-2" src={p.url} alt={p.title} />
-                <h3>{p.title}</h3>
-              </header>
-              <div className="wrap">
-                <p>{p.description}</p>
-                <div>
-                  <Button
-                    className="shadow-2"
-                    onClick={() => this.props.push(`/articles/${p.id}`)}
-                  >
-                    Przejdź do artykułu
-                  </Button>
-                </div>
-              </div>
-            </ImgWrap>
-          ))}
+          {this.state.loading ? (
+            <Loader loading={this.state.loading} />
+          ) : (
+            <Fragment>
+              {this.state.pictures.map((p, index) => (
+                <ImgWrap
+                  key={index}
+                  className="shadow-1"
+                  onClick={() => this.props.push(`/articles/${p.id}`)}
+                >
+                  <header>
+                    <img className="shadow-2" src={p.url} alt={p.title} />
+                    <h3>{p.title}</h3>
+                  </header>
+                  <div className="wrap">
+                    <p>{p.description}</p>
+                    <div>
+                      <Button
+                        className="shadow-2"
+                        onClick={() => this.props.push(`/articles/${p.id}`)}
+                      >
+                        Przejdź do artykułu
+                      </Button>
+                    </div>
+                  </div>
+                </ImgWrap>
+              ))}
+            </Fragment>
+          )}
         </div>
       </Styled>
     );
