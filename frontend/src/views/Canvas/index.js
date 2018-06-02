@@ -96,7 +96,7 @@ const Info = styled.div`
   right: 1rem;
   padding: 1rem;
   background: ${theme.blockBackground};
-  width: 300px;
+  width: 340px;
   border-radius: 8px;
 `;
 

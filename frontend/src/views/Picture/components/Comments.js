@@ -21,15 +21,15 @@ class Comments extends Component {
               <Comment>
                 <Row start="xs">
                   <Col xs={12}>
-                    <strong>Autor:</strong> {c.author}
+                    <strong className="label">Autor:</strong> {c.author}
                   </Col>
                   <Col xs={12}>
-                    <strong>Data utworzenia: </strong>
+                    <strong className="label">Data utworzenia: </strong>
                     {moment(parseInt(c.created, 10)).format("DD.MM.YYYY HH:mm")}
                   </Col>
                   <Col xs={24}>
                     <div className="text">
-                      <strong>Teskst:</strong> <p>{c.text}</p>
+                      <strong className="label">Teskst:</strong> <p>{c.text}</p>
                     </div>
                   </Col>
                 </Row>

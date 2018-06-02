@@ -72,13 +72,24 @@ class PictureDetails extends Component<Props, State> {
                 <Col xs={24} md={11}>
                   <img src={this.state.img.url} alt={this.state.img.title} />
                   <Wrap>
-                    <h2>DATA DODANIA</h2>
+                    <h2 className="label">
+                      <span role="img" aria-label="calendar">
+                        📆
+                      </span>
+                      DATA DODANIA{" "}
+                    </h2>
                     <p>
                       {moment(this.state.img.created * 1000).format(
                         "DD.MM.YYYY HH:mm"
                       )}
                     </p>
-                    <h2>OPIS</h2>
+                    <h2 className="label">
+                      <span role="img" aria-label="calendar">
+                        📖
+                      </span>
+                      OPIS
+                    </h2>
+
                     <p>{this.state.img.description}</p>
                   </Wrap>
                 </Col>
@@ -112,6 +123,13 @@ const PictureDetailsStyled = styled(Grid)`
   color: ${theme.color.text};
   padding-top: 80px;
   background: ${theme.secondary};
+  .label {
+    opacity: 0.75;
+    font-weight: 400;
+    > span {
+      padding-right: 1rem;
+    }
+  }
 
   h1 {
     padding-top: 5rem;
@@ -121,7 +139,7 @@ const PictureDetailsStyled = styled(Grid)`
   }
   h2 {
     text-align: left;
-    margin-bottom: 8px;
+    margin-bottom: 24px;
   }
   p {
     text-align: left;
